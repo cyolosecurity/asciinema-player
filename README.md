@@ -14,7 +14,7 @@ The npm version we use will correspond to the tag in the original repo, with an 
 Add `@cyolosecurity/asciinema-player` to your `devDependencies`:
 
 ```bash
-npm install --save-dev @cyolosecurity/asciinema-player@3.6.3-1
+npm install --save-dev @cyolosecurity/asciinema-player@3.6.3-3
 ```
 
 Add empty `<div id="demo"></div>` element to your page to contain the player.
