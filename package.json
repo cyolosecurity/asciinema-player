@@ -3,10 +3,10 @@
   "description": "Web player for terminal session recordings.",
   "version": "3.6.3",
   "author": "Marcin Kulik",
-  "homepage": "https://github.com/asciinema/asciinema-player",
+  "homepage": "https://github.com/cyolosecurity/asciinema-player",
   "repository": {
     "type": "git",
-    "url": "https://github.com/asciinema/asciinema-player.git"
+    "url": "https://github.com/cyolosecurity/asciinema-player.git"
   },
   "license": "Apache-2.0",
   "main": "dist/index.js",
