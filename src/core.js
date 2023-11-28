@@ -155,6 +155,8 @@ class Core {
     this.markers = this.normalizeMarkers(opts.markers);
     this.pauseOnMarkers = opts.pauseOnMarkers;
     this.commandQueue = Promise.resolve();
+    this.searchTerm = opts.searchTerm;
+    this.onSearchClick = opts.onSearchClick;
 
     this.eventHandlers = new Map([
       ['marker', []],
@@ -211,7 +213,8 @@ class Core {
         loop: this.loop,
         posterTime: posterTime,
         markers: this.markers,
-        pauseOnMarkers: this.pauseOnMarkers
+        pauseOnMarkers: this.pauseOnMarkers,
+        searchTerm: this.searchTerm
       }
     );
 
@@ -313,7 +316,14 @@ class Core {
 
       for (const i of this.changedLines) {
         if (i < rows) {
-          lines.set(i, {id: i, segments: this.vt.get_line(i)});
+          let line = this.vt.get_line(i);
+          const segments = [];
+          for (const lineWrapper of line) {
+            for (const lineElement of lineWrapper[0]) {
+              segments.push([lineElement, lineWrapper[1]]);
+            }
+          }
+          lines.set(i, {id: i, segments: segments});
         }
       }
 
@@ -349,6 +359,10 @@ class Core {
 
   getDuration() {
     return this.duration;
+  }
+
+  getSearchTerm() {
+    return this.searchTerm;
   }
 
   // private
