@@ -1,10 +1,33 @@
 # asciinema player
 
-[![Build status](https://github.com/asciinema/asciinema-player/actions/workflows/build.yml/badge.svg)](https://github.com/asciinema/asciinema-player/actions/workflows/build.yml)
-
 Web player for terminal sessions recorded with
 [asciinema](https://github.com/asciinema/asciinema), which you can use on your
 own website.
+
+### Another asciinema-player package?
+Yes, We in Cyolo provide full-text search over SSH recordings, in order to support that we had to add additional capabilites.
+
+### Version numbers
+The npm version we use will correspond to the tag in the original repo, with an additional number corresponding to the patch.
+### Use the player in your own application bundle
+
+Add `@cyolosecurity/asciinema-player` to your `devDependencies`:
+
+```bash
+npm install --save-dev @cyolosecurity/asciinema-player@3.6.3-1
+```
+
+Add empty `<div id="demo"></div>` element to your page to contain the player.
+
+Import and use `create` function from `asciinema-player` module:
+
+```javascript
+import * as AsciinemaPlayer from '@cyolosecurity/asciinema-player';
+AsciinemaPlayer.create('/demo.cast', document.getElementById('demo'));
+```
+
+Finally, include player's CSS file in your site CSS bundle. You'll find it in
+the npm package at `dist/bundle/asciinema-player.css`.
 
 ## About
 
@@ -27,90 +50,6 @@ and the recordings yourself then read on, it's very simple.
 
 Shout-out to our Platinum [sponsors](https://github.com/sponsors/ku1ik), whose
 financial support helps keep the project alive:
-
-[<img src="./.github/sponsor-logos/dashcam/logo-on-light.png" width="200" />](https://dashcam.io?utm_source=asciinemagithub)
-
-## Features
-
-* ability to copy-paste terminal content - it's just text after all!
-* smooth, timing-accurate playback,
-* [idle time optimization](#idletimelimit) to skip periods of inactivity,
-* [posters](#poster),
-* [markers](#markers-1) for navigation or auto-pause,
-* configurable [font families](#fonts) and [line height](#terminallineheight),
-* [automatic terminal scaling](#fit) to fit into container element in most efficient way,
-* full-screen mode,
-* [multiple color themes for standard 16 colors](#theme) + support for 256 color palette and 24-bit true color (ISO-8613-3),
-* [adjustable playback speed](#speed),
-* [looped playback](#loop), infinite or finite,
-* [starting playback at specific time](#startat),
-* [API for programmatic control](#api),
-* [keyboard shortcuts](#keyboard-shortcuts),
-* [support for other recording formats](#playing-other-recording-formats) like ttyrec, typescript.
-
-## Quick start
-
-The following examples show how to use asciinema player on your own website.
-
-It assumes you have obtained terminal session recording file by either:
-
-* recording terminal session to a local file with `asciinema rec demo.cast`
-  ([more details on recording](https://github.com/asciinema/asciinema)),
-* downloading an existing recording from asciinema.org by appending `.cast` to the
-  asciicast page URL (for example: https://asciinema.org/a/28307.cast).
-
-### Use standalone player bundle in your HTML page
-
-Download latest version of the player bundle from
-[releases page](https://github.com/asciinema/asciinema-player/releases). You
-only need `asciinema-player.min.js` and `asciinema-player.css` files.
-
-First, add `asciinema-player.min.js`, `asciinema-player.css`and the `.cast` file of
-your recording to your site's assets. The HTML snippet below assumes they're in
-the web server's root directory.
-
-Then add necessary includes to your HTML document and initialize the player
-inside an empty `<div>` element:
-
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  ...
-  <link rel="stylesheet" type="text/css" href="/asciinema-player.css" />
-  ...
-</head>
-<body>
-  ...
-  <div id="demo"></div>
-  ...
-  <script src="/asciinema-player.min.js"></script>
-  <script>
-    AsciinemaPlayer.create('/demo.cast', document.getElementById('demo'));
-  </script>
-</body>
-</html>
-```
-
-### Use the player in your own application bundle
-
-Add `asciinema-player` to your `devDependencies`:
-
-```bash
-npm install --save-dev asciinema-player@3.6.3
-```
-
-Add empty `<div id="demo"></div>` element to your page to contain the player.
-
-Import and use `create` function from `asciinema-player` module:
-
-```javascript
-import * as AsciinemaPlayer from 'asciinema-player';
-AsciinemaPlayer.create('/demo.cast', document.getElementById('demo'));
-```
-
-Finally, include player's CSS file in your site CSS bundle. You'll find it in
-the npm package at `dist/bundle/asciinema-player.css`.
 
 ## Basic usage
 
